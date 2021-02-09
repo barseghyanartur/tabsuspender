@@ -1,9 +1,9 @@
 /*global chrome */
 /*
- * The Great Suspender
+ * Tab Suspender
  * Copyright (C) 2017 Dean Oemcke
  * Available under GNU GENERAL PUBLIC LICENSE v2
- * http://github.com/greatsuspender/thegreatsuspender
+ * http://github.com/barseghyanartur/tabsuspender
  * ლ(ಠ益ಠლ)
 */
 (function() {

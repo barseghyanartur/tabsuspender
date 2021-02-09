@@ -51,14 +51,14 @@ testSuites.push(
           gsUtils.getRootUrl(rawUrl4, true, true) === 'www.google.com';
 
         const rawUrl5 =
-          'https://github.com/deanoemcke/thegreatsuspender/issues/478#issuecomment-430780678';
+          'https://github.com/barseghyanartur/tabsuspender/issues/478#issuecomment-430780678';
         const isUrl5Valid =
           gsUtils.getRootUrl(rawUrl5, false, false) === 'github.com' &&
           gsUtils.getRootUrl(rawUrl5, true, false) ===
-            'github.com/deanoemcke/thegreatsuspender/issues/478' &&
+            'github.com/barseghyanartur/tabsuspender/issues/478' &&
           gsUtils.getRootUrl(rawUrl5, false, true) === 'https://github.com' &&
           gsUtils.getRootUrl(rawUrl5, true, true) ===
-            'https://github.com/deanoemcke/thegreatsuspender/issues/478';
+            'https://github.com/barseghyanartur/tabsuspender/issues/478';
 
         const rawUrl6 = 'file:///Users/dean/Downloads/session%20(63).txt';
         const isUrl6Valid =
