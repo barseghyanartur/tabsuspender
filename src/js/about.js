@@ -24,5 +24,5 @@
     }
   });
 
-  gsAnalytics.reportPageView('about.html');
+  // gsAnalytics.reportPageView('about.html');
 })(this);

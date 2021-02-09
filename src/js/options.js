@@ -247,5 +247,5 @@
   global.exports = {
     initSettings,
   };
-  gsAnalytics.reportPageView('options.html');
+  // gsAnalytics.reportPageView('options.html');
 })(this);

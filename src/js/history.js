@@ -258,5 +258,5 @@
     render();
   });
 
-  gsAnalytics.reportPageView('history.html');
+  // gsAnalytics.reportPageView('history.html');
 })(this);

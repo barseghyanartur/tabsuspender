@@ -12,5 +12,5 @@
   gsUtils.documentReadyAndLocalisedAsPromsied(document).then(function() {
     //do nothing
   });
-  gsAnalytics.reportPageView('restoring-window.html');
+  // gsAnalytics.reportPageView('restoring-window.html');
 })(this);

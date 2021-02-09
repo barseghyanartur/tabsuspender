@@ -20,7 +20,7 @@
       .addEventListener('click', function() {
         chrome.tabs.create({ url: chrome.extension.getURL('history.html') });
       });
-    gsAnalytics.reportPageView('broken.html');
+    // gsAnalytics.reportPageView('broken.html');
   }
   if (document.readyState !== 'loading') {
     init();

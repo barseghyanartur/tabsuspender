@@ -45,5 +45,5 @@
     };
   });
 
-  gsAnalytics.reportPageView('shortcuts.html');
+  // gsAnalytics.reportPageView('shortcuts.html');
 })(this);

@@ -171,5 +171,5 @@
   global.exports = {
     removeTabFromList,
   };
-  gsAnalytics.reportPageView('recovery.html');
+  // gsAnalytics.reportPageView('recovery.html');
 })(this);

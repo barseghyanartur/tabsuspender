@@ -260,7 +260,7 @@ var gsStorage = {
   saveSettings: function(settings) {
     try {
       localStorage.setItem('gsSettings', JSON.stringify(settings));
-      gsAnalytics.setUserDimensions();
+      // gsAnalytics.setUserDimensions();
     } catch (e) {
       gsUtils.error(
         'gsStorage',

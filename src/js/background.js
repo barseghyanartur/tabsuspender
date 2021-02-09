@@ -56,7 +56,7 @@ var tgs = (function() {
       tgs,
       gsUtils,
       gsChrome,
-      gsAnalytics,
+      // gsAnalytics,
       gsStorage,
       gsIndexedDb,
       gsMessages,
@@ -1237,11 +1237,11 @@ var tgs = (function() {
 
         //show notice - set global notice field (so that it can be trigger to show later)
         _noticeToDisplay = resp;
-        gsAnalytics.reportEvent(
-          'Notice',
-          'Prep',
-          resp.target + ':' + resp.version
-        );
+        // gsAnalytics.reportEvent(
+        //   'Notice',
+        //   'Prep',
+        //   resp.target + ':' + resp.version
+        // );
       }
     };
     xhr.send();
@@ -1761,11 +1761,11 @@ var tgs = (function() {
       var noticeToDisplay = requestNotice();
       if (noticeToDisplay) {
         chrome.tabs.create({ url: chrome.extension.getURL('notice.html') });
-        gsAnalytics.reportEvent(
-          'Notice',
-          'Display',
-          noticeToDisplay.target + ':' + noticeToDisplay.version
-        );
+        // gsAnalytics.reportEvent(
+        //   'Notice',
+        //   'Display',
+        //   noticeToDisplay.target + ':' + noticeToDisplay.version
+        // );
       }
     });
     chrome.windows.onRemoved.addListener(function(windowId) {
@@ -1826,11 +1826,11 @@ var tgs = (function() {
   }
 
   function startAnalyticsUpdateJob() {
-    window.setInterval(() => {
-      gsAnalytics.performPingReport();
-      const reset = true;
-      gsSession.updateSessionMetrics(reset);
-    }, analyticsCheckInterval);
+    // window.setInterval(() => {
+    //   gsAnalytics.performPingReport();
+    //   const reset = true;
+    //   gsSession.updateSessionMetrics(reset);
+    // }, analyticsCheckInterval);
   }
 
   return {
@@ -1889,7 +1889,7 @@ Promise.resolve()
   .then(() => {
     // initialise other gsLibs
     return Promise.all([
-      gsAnalytics.initAsPromised(),
+      // gsAnalytics.initAsPromised(),
       gsFavicon.initAsPromised(),
       gsTabSuspendManager.initAsPromised(),
       gsTabCheckManager.initAsPromised(),
@@ -1909,7 +1909,7 @@ Promise.resolve()
     gsUtils.error('background init error: ', error);
   })
   .finally(() => {
-    gsAnalytics.performStartupReport();
-    gsAnalytics.performVersionReport();
+    // gsAnalytics.performStartupReport();
+    // gsAnalytics.performVersionReport();
     tgs.startTimers();
   });
