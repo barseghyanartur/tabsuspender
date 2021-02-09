@@ -9,6 +9,16 @@ If you have suggestions or problems using the extension, please [submit a bug or
 **If you have lost tabs from your browser:** I have written a guide for how to recover your lost tabs [here](https://github.com/barseghyanartur/tabsuspender/issues/526
 ).
 
+### Credits
+
+This is a fork of once famous The Great Suspender extension for Chromium based 
+browsers.
+
+Current master represents a slightly changed version of the v7.1.6 (tag) of
+the original package. All changes are listed in the CHANGELOG.md.
+
+Originally created by [Dean Oemcke](https://github.com/deanoemcke).
+
 ### Chrome Web Store
 
 Tab Suspender is [available via the official Chrome Web Store](https://chrome.google.com/webstore/detail/tab-suspender/klbibkeccnjlkjkiokjodocebajanakg).
