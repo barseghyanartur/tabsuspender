@@ -1,4 +1,4 @@
-/*global chrome, historyItems, historyUtils, gsAnalytics, gsSession, gsIndexedDb, gsUtils */
+/*global chrome, historyItems, historyUtils, gsSession, gsIndexedDb, gsUtils, gsStorage */
 (function(global) {
   'use strict';
 
@@ -202,6 +202,9 @@
   }
 
   function render() {
+    //Set theme
+    document.body.classList.add(gsStorage.getOption(gsStorage.THEME) === 'dark' ? 'dark' : null);
+
     var currentDiv = document.getElementById('currentSessions'),
       sessionsDiv = document.getElementById('recoverySessions'),
       historyDiv = document.getElementById('historySessions'),
@@ -243,6 +246,12 @@
       importSessionActionEl.click();
     };
 
+    var migrateTabsEl = document.getElementById('migrateTabs');
+    migrateTabsEl.onclick = function() {
+      var migrateTabsFromIdEl = document.getElementById('migrateFromId');
+      historyUtils.migrateTabs(migrateTabsFromIdEl.value);
+    };
+
     //hide incompatible sidebar items if in incognito mode
     if (chrome.extension.inIncognitoContext) {
       Array.prototype.forEach.call(
@@ -258,5 +267,4 @@
     render();
   });
 
-  gsAnalytics.reportPageView('history.html');
 })(this);

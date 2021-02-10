@@ -1,4 +1,4 @@
-/*global chrome, gsAnalytics, gsStorage, gsChrome, gsUtils */
+/*global chrome, gsStorage, gsChrome, gsUtils */
 (function(global) {
   try {
     chrome.extension.getBackgroundPage().tgs.setViewGlobals(global);
@@ -27,6 +27,7 @@
     whitelist: gsStorage.WHITELIST,
   };
 
+
   function selectComboBox(element, key) {
     var i, child;
 
@@ -41,11 +42,13 @@
 
   //populate settings from synced storage
   function initSettings() {
+    //Set theme
+    document.body.classList.add(gsStorage.getOption(gsStorage.THEME) === 'dark' ? 'dark' : null);
+
     var optionEls = document.getElementsByClassName('option'),
       pref,
       element,
       i;
-
     for (i = 0; i < optionEls.length; i++) {
       element = optionEls[i];
       pref = elementPrefMap[element.id];
@@ -53,10 +56,10 @@
     }
 
     setForceScreenCaptureVisibility(
-      gsStorage.getOption(gsStorage.SCREEN_CAPTURE) !== '0'
+      gsStorage.getOption(gsStorage.SCREEN_CAPTURE) !== '0',
     );
     setAutoSuspendOptionsVisibility(
-      parseFloat(gsStorage.getOption(gsStorage.SUSPEND_TIME)) > 0
+      parseFloat(gsStorage.getOption(gsStorage.SUSPEND_TIME)) > 0,
     );
     setSyncNoteVisibility(!gsStorage.getOption(gsStorage.SYNC_SETTINGS));
 
@@ -126,7 +129,7 @@
         } else {
           el.style.display = 'none';
         }
-      }
+      },
     );
   }
 
@@ -146,6 +149,9 @@
         if (getOptionValue(element)) {
           setSyncNoteVisibility(false);
         }
+      } else if (pref === gsStorage.THEME) {
+        // when the user changes the theme, it reloads the page to apply instantly the modification
+        window.location.reload();
       }
 
       var [oldValue, newValue] = saveChange(element);
@@ -154,7 +160,7 @@
         gsUtils.performPostSaveUpdates(
           [prefKey],
           { [prefKey]: oldValue },
-          { [prefKey]: newValue }
+          { [prefKey]: newValue },
         );
       }
     };
@@ -192,7 +198,7 @@
         element.addEventListener(
           'input',
           gsUtils.debounce(handleChange(element), 200),
-          false
+          false,
         );
       } else {
         element.onchange = handleChange(element);
@@ -207,10 +213,10 @@
           tab =>
             gsUtils.isSuspendedTab(tab)
               ? gsUtils.getOriginalUrl(tab.url)
-              : tab.url
+              : tab.url,
         )
         .filter(
-          url => !gsUtils.isSuspendedUrl(url) && gsUtils.checkWhiteList(url)
+          url => !gsUtils.isSuspendedUrl(url) && gsUtils.checkWhiteList(url),
         )
         .map(url => (url.length > 55 ? url.substr(0, 52) + '...' : url));
       if (tabUrls.length === 0) {
@@ -219,14 +225,14 @@
       }
       const firstUrls = tabUrls.splice(0, 22);
       let alertString = `${chrome.i18n.getMessage(
-        'js_options_whitelist_matches_heading'
+        'js_options_whitelist_matches_heading',
       )}\n${firstUrls.join('\n')}`;
 
       if (tabUrls.length > 0) {
         alertString += `\n${chrome.i18n.getMessage(
-          'js_options_whitelist_matches_overflow_prefix'
+          'js_options_whitelist_matches_overflow_prefix',
         )} ${tabUrls.length} ${chrome.i18n.getMessage(
-          'js_options_whitelist_matches_overflow_suffix'
+          'js_options_whitelist_matches_overflow_suffix',
         )}`;
       }
       alert(alertString);
@@ -238,14 +244,14 @@
         document.getElementsByClassName('noIncognito'),
         function(el) {
           el.style.display = 'none';
-        }
+        },
       );
       window.alert(chrome.i18n.getMessage('js_options_incognito_warning'));
     }
   });
 
+
   global.exports = {
     initSettings,
   };
-  gsAnalytics.reportPageView('options.html');
 })(this);

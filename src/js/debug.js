@@ -1,4 +1,4 @@
-/*global chrome, tgs, gsAnalytics, gsUtils, gsFavicon, gsStorage, gsChrome */
+/*global chrome, tgs, gsUtils, gsFavicon, gsStorage, gsChrome */
 (function(global) {
   'use strict';
 
@@ -77,6 +77,8 @@
   }
 
   gsUtils.documentReadyAndLocalisedAsPromsied(document).then(async function() {
+    //Set theme
+    document.body.classList.add(gsStorage.getOption(gsStorage.THEME) === 'dark' ? 'dark' : null);
     await fetchInfo();
     addFlagHtml(
       'toggleDebugInfo',
@@ -144,5 +146,4 @@
         });
         */
   });
-  gsAnalytics.reportPageView('debug.html');
 })(this);
